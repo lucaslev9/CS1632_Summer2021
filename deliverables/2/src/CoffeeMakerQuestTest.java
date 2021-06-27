@@ -27,12 +27,32 @@ public class CoffeeMakerQuestTest {
 
 		// TODO: 2. Create a mock Player and assign to player and call cmq.setPlayer(player). 
 		// Player should not have any items (no coffee, no cream, no sugar)
-
+		player = Mockito.mock(Player.class);
+		cmq.setPlayer(player);
+		
 		// TODO: 3. Create mock Rooms and assign to room1, room2, ..., room6.
 		// Mimic the furnishings / adjectives / items of the rooms in the original Coffee Maker Quest.
+		room1 = Mockito.mock(Room.class);
+		room2 = Mockito.mock(Room.class);
+		room3 = Mockito.mock(Room.class);
+		room4 = Mockito.mock(Room.class);
+		room5 = Mockito.mock(Room.class);
+		room6 = Mockito.mock(Room.class);
+		
+		room1 = new Room("Quaint sofa", "Small", Item.CREAM);
+		room2 = new Room("Sad record player", "Funny", Item.NONE)
+		room3 = new Room("Tight pizza", "Refinanced", Item.COFFEE);
+		room4 = new Room("Flat energy drink", "Dumb", Item.NONE);
+		room5 = new Room("Beautiful bag of money", "Bloodthirsty", Item.NONE);
+		room6 = new Room("Perfect air hockey table", "Rough", Item.SUGAR);
 		
 		// TODO: 4. Add the rooms created above to mimic the layout of the original Coffee Maker Quest.
-		
+		cmq.addFirstRoom(room1);
+		cmq.addRoomAtNorth(room2, "Magenta", "Massive");
+		cmq.addRoomAtNorth(room3, "Beige", "Smart");
+		cmq.addRoomAtNorth(room4, "Dead", "Slim");
+		cmq.addRoomAtNorth(room5, "Vivacious", "Sandy");
+		cmq.addRoomAtNorth(room6, "Purple", "Minimalist");
 	}
 
 	@After
