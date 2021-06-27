@@ -3,9 +3,16 @@ import java.util.*;
 public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 
 	// TODO: Add more member variables and methods as needed.
+	private boolean gameOver;
+	private Player player;
+	private ArrayList<Room> rooms;
+	private Room currentRoom;
 	
 	CoffeeMakerQuestImpl() {
-		// TODO
+		gameOver = false;
+		player = new Player;
+		rooms = new ArrayList<Room>();
+		currentRoom = null;
 	}
 
 	/**
@@ -15,7 +22,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 */
 	public boolean isGameOver() {
 		// TODO
-		return false;
+		return gameOver;
 	}
 
 	/**
@@ -24,7 +31,7 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @param p the player
 	 */
 	public void setPlayer(Player p) {
-		// TODO
+		player = p;
 	}
 	
 	/**
@@ -36,7 +43,14 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 */
 	public boolean addFirstRoom(Room room) {
 		// TODO
-		return false;
+		if (room == null){
+			return false;
+		}
+		if (!rooms.isEmpty()){
+			return false;
+		}
+		rooms.add(room);
+		return true;
 	}
 
 	/**
@@ -55,8 +69,18 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return true if successful, false otherwise
 	 */
 	public boolean addRoomAtNorth(Room room, String northDoor, String southDoor) {
-		// TODO
-		return false;
+		if (anyIsNull(room, northDoor, southDoor)){
+			return false;
+		}
+		if (rooms.isEmpty()){
+			return false;
+		}
+		if (rooms.contains(room)){
+			return false;
+		}
+		
+		/* otherwise add the room */
+		
 	}
 
 	/**
@@ -67,7 +91,10 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 */ 
 	public Room getCurrentRoom() {
 		// TODO
-		return null;
+		if (currentRoom == null){
+			return null;
+		}
+		return currentRoom;
 	}
 	
 	/**
@@ -78,7 +105,10 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 	 * @return true if successful, false otherwise
 	 */
 	public boolean setCurrentRoom(Room room) {
-		// TODO
+		if (rooms.contains(room)){
+			currentRoom = room;
+			return true;
+		}
 		return false;
 	}
 	
@@ -112,4 +142,10 @@ public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
 		return "";
 	}
 	
+	private boolean anyIsNull(Object a, Object b, Object c){
+		if (a == null || b == null || c == null){
+			return true;
+		}
+		return false;
+	}
 }
